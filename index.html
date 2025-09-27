@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Paraboloids Explorer</title>
+    <link rel="stylesheet" href="./styles.css" />
+  <!-- KaTeX for rendering LaTeX in the overlay -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.160.1/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.160.1/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <noscript>This app requires JavaScript enabled.</noscript>
+    <div id="ui" aria-label="controls">
+      <div id="toolbar">
+        <button id="homeBtn" type="button" title="Reset view to home">Home</button>
+      </div>
+      <div id="controls" aria-label="surface controls">
+        <div id="equation" aria-live="polite">z = 0.50 x² + 0.50 y² + 0.0</div>
+        <label> Surface
+          <select id="surfaceSelect">
+            <option value="paraboloid" selected>Paraboloid</option>
+            <option value="plane">Plane</option>
+            <option value="sine">Sine wave</option>
+            <option value="sinc">Radial ripples (sinc)</option>
+            <option value="gaussian">Gaussian bump</option>
+          </select>
+          <span></span>
+        </label>
+        <div id="paramRows"></div>
+        <label> R
+          <input id="rSlider" type="range" min="1" max="50" step="1" value="20" />
+          <span id="rValue">20</span>
+        </label>
+        <label> Resolution
+          <input id="resSlider" type="range" min="8" max="256" step="1" value="80" />
+          <span id="resValue">80</span>
+        </label>
+        <label> Trace
+          <select id="traceModeSelect">
+            <option value="none" selected>None</option>
+            <option value="x">Fix x = constant</option>
+            <option value="y">Fix y = constant</option>
+          </select>
+          <span></span>
+        </label>
+        <label>
+          <span class="field-label">Trace position <span id="tracePosLabel">(x0)</span></span>
+          <input id="tracePosSlider" type="range" min="-20" max="20" step="0.1" value="0" />
+          <span id="tracePosValue">0.0</span>
+        </label>
+        <label>
+          <span class="field-label">Point <span id="pointLabel">(y)</span></span>
+          <input id="pointSlider" type="range" min="-20" max="20" step="0.1" value="0" />
+          <span id="pointValue">0.0</span>
+        </label>
+        <label> Show surface
+          <input id="showSurfaceChk" type="checkbox" checked />
+          <span></span>
+        </label>
+        
+      </div>
+    </div>
+    <div id="app" aria-label="3D plotting area"></div>
+    <!-- Top-right LaTeX overlay for partial derivative/tangent info -->
+    <div id="mathOverlay" aria-live="polite" style="display:none"><span id="mathLatex"></span></div>
+    <script type="module" src="./main.js"></script>
+  </body>
+  </html>

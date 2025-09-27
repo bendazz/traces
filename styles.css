@@ -1,0 +1,119 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #ffffff; /* white background */
+  color: #111111;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif;
+}
+
+#app {
+  position: fixed;
+  inset: 0; /* fill viewport */
+}
+
+canvas { display: block; }
+
+#ui {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 10;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+/* Top-right KaTeX overlay */
+#mathOverlay {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 11; /* above controls */
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 6px 10px;
+  color: #111827;
+  font-size: 15px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+#toolbar { display: flex; gap: 8px; }
+
+#homeBtn {
+  background: #f7f7f7;
+  color: #111;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+#homeBtn:hover { background: #eee; }
+
+#controls {
+  background: rgba(255,255,255,0.9);
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 8px 10px;
+  display: grid;
+  grid-template-columns: auto 240px auto;
+  gap: 6px 10px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+#controls label { display: contents; }
+
+#controls input[type="range"] {
+  width: 240px;
+}
+
+#controls span { width: 48px; text-align: right; font-variant-numeric: tabular-nums; }
+
+#controls select { width: 240px; }
+
+#paramRows {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: auto 240px auto;
+  gap: 6px 10px;
+}
+
+#equation {
+  grid-column: 1 / -1;
+  font-size: 14px;
+  padding: 4px 6px 8px 2px;
+  color: #111827;
+}
+
+.field-label { align-self: center; }
+
+/* Ensure checkboxes align with label text */
+#controls input[type="checkbox"] { align-self: center; }
+
+/* 2D point label styling */
+.label2d {
+  font: 12px/1.2 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif;
+  color: #111;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 2px 6px;
+  white-space: nowrap;
+  transform: translateY(-6px);
+}
+
+/* Small screens: stack controls for readability */
+@media (max-width: 720px) {
+  #controls {
+    grid-template-columns: 1fr;
+  }
+  #controls label { display: grid; grid-template-columns: auto 1fr auto; align-items: center; }
+  #controls select, #controls input[type="range"] { width: 100%; }
+  #paramRows { grid-template-columns: auto 1fr auto; }
+}
